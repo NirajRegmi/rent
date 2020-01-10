@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
-
+import { HomeGuard } from '../guards/home.guard';
+import { UserDataResolver } from 'src/user-data.resolver';
 const routes: Routes = [
   {
     path: 'home',
 component: HomePage,
+canActivate: [HomeGuard],
+resolve:{
+  userData: UserDataResolver
+  },
 children: [
 {
 path: 'feed',
